@@ -2,7 +2,7 @@
 import sys
 
 if(len(sys.argv)!=2):
-    print("Usage: brightness [+/.:brightness]")
+    print("Usage: " + sys.argv[0] +" [+/-brightness]")
     sys.exit()
 
 
