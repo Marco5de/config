@@ -31,7 +31,10 @@ else:
 
 if(not(new_abs >= MIN and new_abs <= MAX)):
     print("Argument too large: brightness has to be between 500 and 7500 abs")
-    sys.exit()
+    if(new_abs<MIN):
+        new_abs=MIN
+    if(new_abs>MAX):
+        new_abs=MAX
 
 new_rel = new_abs/MAX*100
 print("Brightness: " + str(new_rel))
