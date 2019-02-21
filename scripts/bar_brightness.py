@@ -9,6 +9,6 @@ curr_abs=file.readline()
 file.close()
 
 rel=int(curr_abs)/MAX*100
-print(str(rel) + "%")
+print(str(rel)[:4] + "%")
 
 
