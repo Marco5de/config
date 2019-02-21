@@ -5,9 +5,10 @@ if(len(sys.argv)!=2):
     print("Usage: " + sys.argv[0] +" [+/-brightness]")
     sys.exit()
 
+max_file=open("/sys/class/backlight/intel_backlight/max_brightness","r")
 
 MIN=500
-MAX=7500
+MAX=int(max_file.readline())
 curr_abs=0
 curr_rel=0
 

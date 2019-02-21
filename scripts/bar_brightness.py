@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 import sys
 
-MAX=7500
+file_max=open("/sys/class/backlight/intel_backlight/max_brightness","r")
+MAX=int(file_max.readline())
 
 filename="/sys/class/backlight/intel_backlight/brightness"
 file=open(filename,"r")
