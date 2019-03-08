@@ -31,6 +31,11 @@ def tx_readline():
     tx_file.seek(0,0)
     return ret
 
+def rx_dropped_readline():
+    dropped=int(rx_dropped_file.readline())
+    rx_dropped_file.seek(0,0)
+    return dropped
+
 def handle_time():
     global magic_time,prev_time
     time_m=time.time()
@@ -43,13 +48,18 @@ def handle_time():
     #print("Difference: " + str(diff))    
     return
 
-
+def print_interfaces(interfaces):
+    sys.stdout.write("Available Interfaces: ")
+    for x in interfaces:
+        sys.stdout.write(str(x)+" ")
+    sys.stdout.write("\n")
 
 while(1):
     os.system("clear")
     dirs = os.listdir("/sys/class/net")
-    print("Available Interfaces: " + str(dirs))
-    print("Down: " + str(rx_readline())+"kB/s")
-    print("Up: " + str(tx_readline())+"kB/s")
+    print_interfaces(dirs)
+    print("Down: " + str(rx_readline())[:4]+"kB/s")
+    print("Up: " + str(tx_readline())[:4]+"kB/s")
+    print("Dropped: " + str(rx_dropped_readline()))
     handle_time()
     time.sleep(magic_time)
