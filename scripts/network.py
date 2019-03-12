@@ -3,6 +3,16 @@ import sys
 import time
 import os 
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
 magic_time=0.997
 
 rx_file=open("/sys/class/net/wlp3s0/statistics/rx_bytes")
@@ -49,7 +59,7 @@ def handle_time():
     return
 
 def print_interfaces(interfaces):
-    sys.stdout.write("Available Interfaces: ")
+    sys.stdout.write( bcolors.WARNING + "Available Interfaces: " + bcolors.ENDC)
     for x in interfaces:
         sys.stdout.write(str(x)+" ")
     sys.stdout.write("\n")
@@ -58,8 +68,8 @@ while(1):
     os.system("clear")
     dirs = os.listdir("/sys/class/net")
     print_interfaces(dirs)
-    print("Down: " + str(rx_readline())[:4]+"kB/s")
-    print("Up: " + str(tx_readline())[:4]+"kB/s")
-    print("Dropped: " + str(rx_dropped_readline()))
+    print(bcolors.OKGREEN + "Down: " + bcolors.ENDC + str(rx_readline())[:4]+"kB/s")
+    print(bcolors.OKBLUE + "Up: " + bcolors.ENDC  + str(tx_readline())[:4]+"kB/s")
+    print(bcolors.FAIL + "Dropped: " + bcolors.ENDC + str(rx_dropped_readline()))
     handle_time()
     time.sleep(magic_time)
